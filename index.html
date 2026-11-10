@@ -1,0 +1,419 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EarthScope | Earth Intelligence</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="#home" class="logo">🌍 EarthScope</a>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#explorer">Analysis</a>
+            <a href="#results">Results</a>
+            <a href="#architecture">Technology</a>
+        </div>
+
+        <a href="#explorer" class="nav-button">Start Exploring ↗</a>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero" id="home">
+
+        <div class="hero-content">
+            <span class="eyebrow">✦ EARTH SYSTEM INTELLIGENCE</span>
+
+            <h1>
+                Discover the Hidden
+                <span>Trends</span> of Our Planet.
+            </h1>
+
+            <p>
+                Explore Earth's changing systems through data.
+                Detect patterns, understand trends, and uncover
+                the story behind our changing planet.
+            </p>
+
+            <a href="#explorer" class="primary-button">
+                Explore Earth Data →
+            </a>
+
+            <div class="hero-note">
+                DATA • SCIENCE • DISCOVERY
+            </div>
+        </div>
+
+        <div class="earth-visual">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+
+            <div class="earth">🌎</div>
+
+            <div class="floating-card card-one">🌡️ Temperature</div>
+            <div class="floating-card card-two">🌱 Vegetation</div>
+            <div class="floating-card card-three">🌧️ Rainfall</div>
+        </div>
+
+    </header>
+
+    <!-- INTRO -->
+    <section class="intro">
+        <span class="eyebrow">THE MISSION</span>
+
+        <h2>
+            Earth is changing.
+            <span>Let's understand how.</span>
+        </h2>
+
+        <p>
+            EarthScope transforms environmental observations into
+            understandable visual insights to help detect long-term
+            changes in our planet.
+        </p>
+    </section>
+
+    <!-- DATA EXPLORER -->
+    <section class="explorer-section" id="explorer">
+
+        <div class="section-heading">
+            <span class="eyebrow">✦ DATA EXPLORER</span>
+
+            <h2>
+                Start Your <span>Investigation.</span>
+            </h2>
+
+            <p>
+                Choose an Earth system variable and investigate its historical trend.
+            </p>
+        </div>
+
+        <div class="explorer-card">
+
+            <div class="form-group">
+                <label for="variable">EARTH SYSTEM VARIABLE</label>
+
+                <select id="variable">
+                    <option value="temperature">Global Temperature</option>
+                    <option value="vegetation">Vegetation Index</option>
+                    <option value="rainfall">Rainfall</option>
+                    <option value="ice">Sea Ice Extent</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="region">REGION</label>
+
+                <select id="region">
+                    <option value="Global">Global</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="North America">North America</option>
+                    <option value="South America">South America</option>
+                </select>
+            </div>
+
+            <div class="year-grid">
+                <div class="form-group">
+                    <label for="startYear">START YEAR</label>
+                    <input type="number" id="startYear" value="2000" min="1981" max="2025">
+                </div>
+
+                <div class="form-group">
+                    <label for="endYear">END YEAR</label>
+                    <input type="number" id="endYear" value="2024" min="1981" max="2025">
+                </div>
+            </div>
+
+            <button class="analyze-button" onclick="analyzeData()">
+                Analyze Earth Data →
+            </button>
+
+            <p class="data-note">
+                Live environmental observations provided by NASA POWER.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- RESULTS DASHBOARD -->
+    <section class="results-section" id="results">
+
+        <div class="section-heading">
+            <span class="eyebrow">✦ SCIENTIFIC DISCOVERY</span>
+
+            <h2>Earth <span>Intelligence.</span></h2>
+
+            <p>Your investigation transformed into visual insights.</p>
+        </div>
+
+        <div class="results-status">
+            <span class="live-dot"></span>
+            <span id="resultRegion">Awaiting investigation</span>
+            <span class="status-label" id="resultStatus">WAITING FOR DATA</span>
+        </div>
+
+        <div class="kpi-grid">
+
+            <div class="kpi-card">
+                <span class="kpi-label">TREND DIRECTION</span>
+                <h3 id="trend">--</h3>
+                <p>Detected direction</p>
+            </div>
+
+            <div class="kpi-card">
+                <span class="kpi-label">TOTAL CHANGE</span>
+                <h3 id="change">--</h3>
+                <p>Change across selected period</p>
+            </div>
+
+            <div class="kpi-card">
+                <span class="kpi-label">STATISTICAL TEST</span>
+                <h3 id="confidence">--</h3>
+                <p>Not statistically tested</p>
+            </div>
+
+        </div>
+
+        <div class="result-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <span class="eyebrow">HISTORICAL DATA</span>
+                    <h3 id="chartTitle">Trend Visualization</h3>
+                </div>
+
+                <span class="demo-tag" id="dataSourceTag">
+                    NASA POWER DATA
+                </span>
+            </div>
+
+            <div class="chart-wrapper">
+                <canvas id="trendChart"></canvas>
+            </div>
+
+        </div>
+
+        <div class="insight-panel">
+            <div class="insight-icon">✦</div>
+
+            <div>
+                <span class="eyebrow">DETECTIVE'S FINDINGS</span>
+                <h3>Scientific Insight</h3>
+
+                <p id="insight">
+                    Run an investigation to discover patterns hidden in Earth's changing systems.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- HOW EARTHSCOPE WORKS -->
+    <section class="architecture-section" id="architecture">
+
+        <div class="section-heading">
+            <span class="eyebrow">✦ BEHIND THE TECHNOLOGY</span>
+
+            <h2>How EarthScope <span>Works.</span></h2>
+
+            <p>
+                From raw environmental observations to meaningful scientific discoveries.
+            </p>
+        </div>
+
+        <!-- SYSTEM ARCHITECTURE -->
+        <div class="diagram-card">
+
+            <div class="diagram-heading">
+                <span class="eyebrow">01 / SYSTEM ARCHITECTURE</span>
+                <h3>System Overview</h3>
+                <p>The main components of the EarthScope platform.</p>
+            </div>
+
+            <div class="architecture-flow">
+
+                <div class="architecture-node">
+                    <div class="node-icon">👤</div>
+                    <h4>User Interface</h4>
+                    <p>Region and variable selection</p>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="architecture-node">
+                    <div class="node-icon">🛰️</div>
+                    <h4>NASA POWER API</h4>
+                    <p>Environmental observations</p>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="architecture-node">
+                    <div class="node-icon">⚙️</div>
+                    <h4>Data Processing</h4>
+                    <p>Cleaning and aggregation</p>
+                </div>
+
+                <div class="flow-arrow">→</div>
+
+                <div class="architecture-node">
+                    <div class="node-icon">📊</div>
+                    <h4>Analysis Engine</h4>
+                    <p>Trend detection and statistics</p>
+                </div>
+
+            </div>
+
+            <div class="architecture-output">
+                <span>↓</span>
+
+                <div>
+                    <strong>Scientific Visualization</strong>
+                    <p>Charts • Insights • Environmental Trends</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SYSTEM WORKFLOW -->
+        <div class="diagram-card">
+
+            <div class="diagram-heading">
+                <span class="eyebrow">02 / SYSTEM WORKFLOW</span>
+                <h3>From Question to Discovery</h3>
+                <p>How a user investigation moves through the platform.</p>
+            </div>
+
+            <div class="workflow">
+
+                <div class="workflow-step">
+                    <span class="step-number">01</span>
+                    <div>
+                        <h4>Select Investigation</h4>
+                        <p>Choose an environmental variable, region and time period.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-connector"></div>
+
+                <div class="workflow-step">
+                    <span class="step-number">02</span>
+                    <div>
+                        <h4>Collect Data</h4>
+                        <p>Retrieve observations from NASA POWER.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-connector"></div>
+
+                <div class="workflow-step">
+                    <span class="step-number">03</span>
+                    <div>
+                        <h4>Prepare Data</h4>
+                        <p>Handle missing values and calculate yearly averages.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-connector"></div>
+
+                <div class="workflow-step">
+                    <span class="step-number">04</span>
+                    <div>
+                        <h4>Detect Trends</h4>
+                        <p>Measure changes and identify increasing or decreasing patterns.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-connector"></div>
+
+                <div class="workflow-step">
+                    <span class="step-number">05</span>
+                    <div>
+                        <h4>Present Discovery</h4>
+                        <p>Display charts, metrics and scientific insights.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- DATA PIPELINE -->
+        <div class="diagram-card">
+
+            <div class="diagram-heading">
+                <span class="eyebrow">03 / DATA PROCESSING PIPELINE</span>
+                <h3>Turning Data into Knowledge</h3>
+                <p>The transformation of raw observations into useful information.</p>
+            </div>
+
+            <div class="pipeline">
+
+                <div class="pipeline-stage">
+                    <span>01</span>
+                    <h4>Raw Data</h4>
+                    <p>Daily NASA observations</p>
+                </div>
+
+                <div class="pipeline-arrow">→</div>
+
+                <div class="pipeline-stage">
+                    <span>02</span>
+                    <h4>Data Cleaning</h4>
+                    <p>Remove invalid values</p>
+                </div>
+
+                <div class="pipeline-arrow">→</div>
+
+                <div class="pipeline-stage">
+                    <span>03</span>
+                    <h4>Aggregation</h4>
+                    <p>Calculate annual averages</p>
+                </div>
+
+                <div class="pipeline-arrow">→</div>
+
+                <div class="pipeline-stage">
+                    <span>04</span>
+                    <h4>Trend Analysis</h4>
+                    <p>Measure environmental changes</p>
+                </div>
+
+            </div>
+
+            <div class="pipeline-result">
+                <span>✦ FINAL OUTPUT</span>
+                <h4>Understandable Scientific Insights</h4>
+            </div>
+
+        </div>
+
+        <p class="diagram-disclaimer">
+            Conceptual system diagrams. Statistical testing and additional
+            processing components are planned development stages.
+        </p>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <h2>🌍 EarthScope</h2>
+
+        <p>Understanding our planet, one trend at a time.</p>
+
+        <span>NASA SPACE APPS CHALLENGE PROJECT</span>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
